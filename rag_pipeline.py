@@ -23,7 +23,7 @@ print(f"Loaded {vectorstore._collection.count()} vectors")
 llm = ChatOpenAI(
     model="openai/gpt-oss-20b",
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key="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"
+    api_key="your-nvidia-api-key"
 )
 
 # --- The RAG function ---
