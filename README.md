@@ -14,36 +14,36 @@ This system uses semantic search and LLM-powered generation to let users ask que
 
 <pre>
                          ┌──────────────────┐
-                         │   User Question   │
+                         │   User Question  │
                          └────────┬─────────┘
                                   │
                                   ▼
                          ┌──────────────────┐
-                         │   Streamlit UI    │
+                         │   Streamlit UI   │
                          └────────┬─────────┘
                                   │
-                    ┌─────────────┴─────────────┐
+                    ┌─────────────┴───────────────┐
                     │                             │
                     ▼                             ▼
           ┌──────────────────┐          ┌──────────────────┐
-          │  Embedding Model │          │    ChromaDB       │
-          │  (MiniLM-L6-v2)  │─────────▶│  Vector Store     │
-          │  384 dimensions  │  store   │  6,612 chunks     │
-          └──────────────────┘          └────────┬─────────┘
+          │  Embedding Model │          │    ChromaDB      │
+          │  (MiniLM-L6-v2)  │───────▶ │  Vector Store    │
+          │  384 dimensions  │  store   │  6,612 chunks    │
+          └──────────────────┘          └──────────────────┘
                     │                             │
                     │  embed query                │ top-4 results
                     │                             │
                     └─────────────┬───────────────┘
                                   │
                                   ▼
-                         ┌──────────────────┐
+                         ┌───────────────────┐
                          │    LLM Engine     │
                          │  (NVIDIA NIM /    │
                          │  Ollama / OpenAI) │
                          │                   │
-                         │  Context + Query   │
-                         │  → Cited Answer    │
-                         └──────────────────┘
+                         │  Context + Query  │
+                         │  → Cited Answer   │
+                         └───────────────────┘
 </pre>
 
 ## Key Features
