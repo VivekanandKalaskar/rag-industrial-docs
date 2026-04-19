@@ -12,7 +12,39 @@ This system uses semantic search and LLM-powered generation to let users ask que
 
 ## Architecture
 
-![Architecture](https://mermaid.ink/img/pako:eNplkk1uwzAMha9CaJ0cwAsFRZEu2kW76IaSaFuIJBqknMIt8hK9Qi_WiFb-6Eri9z4-iqQvXAeLvOC7hJ8OI8NHQ1kqN2YjgJlSwF2AKM85zzYn14dIkh-FPYQTq4EwWQ_-FWjzr0q2Rmzwj7YSqJDXNJIh9cP-UNmXe-Pk6pBWL_d2oGMQ2JfzzN3L_e7HXiXSUt2JHQN0EqfRZ0NrVIqMh6eZu0PD2_shlWS-iIb0mdMcRZn7lJqA0gxVbOBTDLK0Lad57TJ3O1cYs2WxiGVaxnXj4EaT0N4_LiqcgfTBRcrI3U-JfJo2wSzaDm4WEVWuANMNEKf7WX5cLFG7VVTR3ZcewMhe21xsBLEBQ2w5y13FifknSFuZcH6uPZMZB7FKE69fOC2Z-aFcXPxG9bhmJk?type=png)
+<pre>
+                         ┌──────────────────┐
+                         │   User Question   │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │   Streamlit UI    │
+                         └────────┬─────────┘
+                                  │
+                    ┌─────────────┴─────────────┐
+                    │                             │
+                    ▼                             ▼
+          ┌──────────────────┐          ┌──────────────────┐
+          │  Embedding Model │          │    ChromaDB       │
+          │  (MiniLM-L6-v2)  │─────────▶│  Vector Store     │
+          │  384 dimensions  │  store   │  6,612 chunks     │
+          └──────────────────┘          └────────┬─────────┘
+                    │                             │
+                    │  embed query                │ top-4 results
+                    │                             │
+                    └─────────────┬───────────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │    LLM Engine     │
+                         │  (NVIDIA NIM /    │
+                         │  Ollama / OpenAI) │
+                         │                   │
+                         │  Context + Query   │
+                         │  → Cited Answer    │
+                         └──────────────────┘
+</pre>
 
 ## Key Features
 
